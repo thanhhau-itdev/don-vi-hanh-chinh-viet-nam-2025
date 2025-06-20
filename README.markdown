@@ -88,38 +88,9 @@ Bảng `wards` lưu trữ thông tin về các huyện/quận trong một tỉnh
      php artisan migrate
      ```
 
-5. **Kiểm Tra Cơ Sở Dữ Liệu**
-   - Kết nối với MySQL và kiểm tra các bảng:
-     ```sql
-     USE ten_cơ_sơ_dữ_liệu;
-     SHOW TABLES;
-     ```
-     Kết quả mong đợi: `cities`, `wards`.
-   - Kiểm tra cấu trúc bảng:
-     ```sql
-     DESCRIBE cities;
-     DESCRIBE wards;
-     ```
-
-6. **Nạp Dữ Liệu (Tùy Chọn)**
+5. **Nạp Dữ Liệu (Tùy Chọn)**
    - Nếu bạn có seeder để nạp dữ liệu vào bảng `cities` và `wards`, chạy:
      ```bash
      php artisan db:seed
      ```
    - Hoặc sử dụng file JSON (ví dụ: `test.json`) và logic trong controller để chèn dữ liệu từ code.
-
-## Lưu Ý
-- **Xóa Mềm**: Cả hai bảng hỗ trợ xóa mềm, nên các bản ghi bị xóa sẽ được đánh dấu bằng `deleted_at` thay vì xóa vĩnh viễn.
-- **Khóa Ngoại**: Cột `city_id` trong bảng `wards` đảm bảo tính toàn vẹn tham chiếu với bảng `cities`.
-- **Cột Text**: Cột `description` trong cả hai bảng sử dụng kiểu `TEXT` để chứa các chuỗi dài, như danh sách xã/phường trong wards.
-- **Chèn Dữ Liệu**: Đảm bảo giá trị `name` (tối đa 50 ký tự) và `slug` (tối đa 100 ký tự). Cột `description` dùng `TEXT` nên không gặp vấn đề độ dài.
-
-## Khắc Phục Sự Cố
-- **Migration Thất Bại**: Kiểm tra thông tin kết nối trong `.env` và đảm bảo cơ sở dữ liệu đã được tạo.
-- **Lỗi Dữ Liệu Quá Dài**: Kiểm tra độ dài của `name` (tối đa 50 ký tự) và `slug` (tối đa 100 ký tự). Nếu cần cắt bớt, sử dụng `Str::limit()` trong PHP.
-- **Lỗi Khóa Ngoại**: Chèn dữ liệu vào bảng `cities` trước khi chèn vào `wards` để thỏa mãn ràng buộc `city_id`.
-- **Vấn Đề Quyền Truy Cập**: Đảm bảo người dùng MySQL có đầy đủ quyền trên cơ sở dữ liệu:
-  ```sql
-  GRANT ALL PRIVILEGES ON ten_cơ_sơ_dữ_liệu.* TO 'ten_người_dùng'@'host';
-  FLUSH PRIVILEGES;
-  ```
