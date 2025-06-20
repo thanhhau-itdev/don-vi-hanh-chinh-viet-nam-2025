@@ -20,7 +20,7 @@ Bảng `cities` lưu trữ thông tin về các tỉnh/thành phố.
 
 ### Bảng: `wards`
 
-Bảng `wards` lưu trữ thông tin về các huyện/quận trong một tỉnh/thành.
+Bảng `wards` lưu trữ thông tin về các xã/phường trong một tỉnh/thành.
 
 | Cột          | Kiểu Dữ Liệu      | Mô Tả                                            | Ràng Buộc                       |
 |--------------|-------------------|--------------------------------------------------|---------------------------------|
@@ -35,7 +35,7 @@ Bảng `wards` lưu trữ thông tin về các huyện/quận trong một tỉnh
 
 ### Mối Quan Hệ
 - **Một-Đối-Nhiều**: Một `city` (tỉnh/thành) có thể có nhiều `wards` (huyện/quận). Cột `city_id` trong bảng `wards` liên kết với cột `id` trong bảng `cities`.
-- **Xóa Liên Đới**: Khi xóa một tỉnh/thành, tất cả các huyện/quận liên quan sẽ tự động bị xóa.
+- **Xóa Liên Đới**: Khi xóa một tỉnh/thành, tất cả các xã/phường liên quan sẽ tự động bị xóa.
 
 ## Hướng Dẫn Thiết Lập Cơ Sở Dữ Liệu
 
@@ -91,6 +91,6 @@ Bảng `wards` lưu trữ thông tin về các huyện/quận trong một tỉnh
 5. **Nạp Dữ Liệu (Tùy Chọn)**
    - Nếu bạn có seeder để nạp dữ liệu vào bảng `cities` và `wards`, chạy:
      ```bash
-     php artisan db:seed
+     php artisan db:seed --class=tên_class
      ```
    - Hoặc sử dụng file JSON (ví dụ: `test.json`) và logic trong controller để chèn dữ liệu từ code.
