@@ -1,31 +1,6 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: Jun 20, 2025 at 04:39 PM
--- Server version: 8.0.30
--- PHP Version: 8.3.9
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `dronediy`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `wards`
---
 
 CREATE TABLE `wards` (
   `id` bigint UNSIGNED NOT NULL,
@@ -37,10 +12,6 @@ CREATE TABLE `wards` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `wards`
---
 
 INSERT INTO `wards` (`id`, `name`, `slug`, `description`, `city_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'An Biên', 'an-bien', 'Thị trấn Thứ Ba, Xã Đông Yên, Xã Hưng Yên', 1, NULL, '2025-06-20 16:08:55', '2025-06-20 16:08:55'),
@@ -3374,39 +3345,14 @@ INSERT INTO `wards` (`id`, `name`, `slug`, `description`, `city_id`, `deleted_at
 (3320, 'Vĩnh Thành', 'vinh-thanh', 'Xã Phú Sơn, Xã Tân Thiềng, Xã Vĩnh Thành', 34, NULL, '2025-06-20 16:08:55', '2025-06-20 16:08:55'),
 (3321, 'Vĩnh Xuân', 'vinh-xuan', 'Xã Hựu Thành, Xã Thuận Thới, Xã Vĩnh Xuân', 34, NULL, '2025-06-20 16:08:55', '2025-06-20 16:08:55');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `wards`
---
 ALTER TABLE `wards`
   ADD PRIMARY KEY (`id`),
   ADD KEY `wards_city_id_foreign` (`city_id`),
   ADD KEY `wards_deleted_at_index` (`deleted_at`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `wards`
---
 ALTER TABLE `wards`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3322;
 
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `wards`
---
 ALTER TABLE `wards`
   ADD CONSTRAINT `wards_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
